@@ -5,20 +5,17 @@ public:
         if( s.length() != t.length() )
             return false;
         
-        std::map< char, std::pair< int, int > > anagramMap;
+        std::map< char, int > anagramMap;
 
         for( int i = 0; i < s.length(); i++ )
         {
-            auto& anagramS = anagramMap[ s[i] ];
-            anagramS.first += 1;
-
-            auto& anagramT = anagramMap[ t[i] ];
-            anagramT.second += 1;
+            anagramMap[ s[i] ]++;
+            anagramMap[ t[i] ]--;
         }
 
-        for( auto [_, pair ] : anagramMap)
+        for( auto& [_, anagram ] : anagramMap)
         {
-            if( pair.first != pair.second )
+            if( 0 != anagram)
                 return false;
         }
 
